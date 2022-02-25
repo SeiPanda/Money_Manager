@@ -23,19 +23,58 @@ body {
     margin: 0px;
 }
 
+.body-overflow {
+    overflow: hidden !important;
+    height: calc(100vh - 81px);
+}
+
 #container_body.move {
-    left:0px;
+    left: -50%;
+}
+
+#container_body.move1 {
+    left: 50%;
 }
 
 #container_body{
-    height: calc(100% - 81px);
+    height: 100%;
     margin: 0px;
     display: grid;
     text-align: center;
     position: relative;
     transition: .5s left;
-    grid-template-rows: 0.2fr 2fr auto auto;
+    grid-template-rows: 0.2fr 2fr calc(20vh + 60.333px);
+    left:0px;
+}
+
+/*filter_menu*/
+#filter-container.show1{
+    left: 0px;
+}
+
+#filter-liste{
+    display: grid;
+    grid-template-rows: auto;
+    height: 100%;
+    list-style: none;
+    margin: 0!important;
+    width: calc(100% - 16px);
+    padding: 0;
+    max-width: 600px;
+}
+
+#filter-container{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    z-index: 1 !important;
+    height: 100%;
+    background-color: #3a3a3a;
+    position: fixed;
+    width: 50%;
+    transition: 0.5s left;
     left: -50%;
+    justify-content: center;
 }
 
 /*menu*/
@@ -68,7 +107,7 @@ body {
     max-width: 600px;
 }
 
-#h:first-child {
+.h:first-child {
     margin-top: 110px;
 }
 
@@ -134,18 +173,6 @@ body {
 }
 
 /*Header*/
-#header {
-    display: flex;
-    width: 100%;
-    background-color: var(--plus_color);
-    color: whitesmoke;
-    font-size: 30px;
-    font-weight: bolder;
-    height: 50%;
-    align-items: center;
-    justify-content: center;
-  
-}
 
 #container-header-outer{
   width: 100%;
@@ -199,6 +226,7 @@ i.fas.fa-filter{
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 999;
 }
 
 #monat_title {
@@ -232,11 +260,31 @@ i.fas.fa-filter{
 }
 
 /*Kontostand*/
+
+#kontostand_outer.open {
+    height: calc(100% - 20vh - 60.333px );
+}
+
+#kontostand_outer {
+    display: flex;
+    width: 100%;
+    background-color: white;
+    bottom: 20vh;
+    height: 60.333px;
+    position: absolute;
+    align-items: start;
+    transition: 0.5s ease-in-out;
+    flex-direction: column;
+    align-items: center;
+}
+
 #kontostand {
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    width: 100%;
+    height: 60.333px;
+    margin-bottom: 1vh;
 }
 
 .title {
@@ -269,8 +317,7 @@ i.fas.fa-filter{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 3vh;
-    margin-bottom: 3vh;
+
 }
 
 .add_button_font:last-child {
@@ -298,4 +345,10 @@ i.fas.fa-filter{
     grid-template-columns: 1fr 1fr;
     justify-items: center;
     align-items: center;
+    position: absolute;
+    bottom: 0;
+    z-index: 999;
+    height: 19vh;
+    background-color: white;
+    width: 100%;
 }

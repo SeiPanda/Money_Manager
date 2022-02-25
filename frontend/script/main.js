@@ -1,16 +1,34 @@
 document.querySelector("#menu").addEventListener("click", loadMenu);
 
-let menuOpen = false;
-function loadMenu(){
+function loadMenu() {
     console.log("clicked")
-    document.querySelector("#menu-container").classList.toggle("show");
-   
-    if(menuOpen === true){   
-        document.querySelector("#container_body").classList.add("move");
-    }else{
-        document.querySelector("#container_body").classList.remove("move");
-
+    if( document.querySelector("#filter-container").classList.contains("show1") ) {
+        document.querySelector("#filter-container").classList.toggle("show1");
+        document.querySelector("#container_body").classList.toggle("move1");
+        return;
     }
-    menuOpen = !menuOpen;
+
+    document.querySelector("#menu-container").classList.toggle("show");
+    document.querySelector("#container_body").classList.toggle("move");
 }
 
+document.querySelector("#logo").addEventListener("click", loadFilterMenu);
+
+function loadFilterMenu() {
+    console.log("clicked Filter")
+    if( document.querySelector("#menu-container").classList.contains("show") ) {
+        document.querySelector("#menu-container").classList.toggle("show");
+        document.querySelector("#container_body").classList.toggle("move");
+        return;
+    } 
+    document.querySelector("#filter-container").classList.toggle("show1");
+    document.querySelector("#container_body").classList.toggle("move1");
+}
+
+document.querySelectorAll(".konto_bars").forEach(bar => {
+    bar.addEventListener("click", loadKontostand);
+})
+
+function loadKontostand() {
+    document.querySelector("#kontostand_outer").classList.toggle("open")
+}

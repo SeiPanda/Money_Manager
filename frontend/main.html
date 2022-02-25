@@ -14,9 +14,19 @@
         <div id="menu-container">
             <p class="menu-p"><i class="fas fa-seedling"></i>Pandas essen Pandabrot</p>
             <ul id="menu-liste">
-                <div id ="h">
+                <div class ="h">
                     <div class="item-container">
-                        <li id="menu-item-opt" class="menu-item"><i class="icon fas fa-cog"></i>Optionen</li>
+                        <li class="menu-item"><i class="icon fas fa-cog"></i>Optionen</li>
+                    </div>
+                </div>
+            </ul>
+        </div>
+        <div id="filter-container">
+            <p class="menu-p"><i class="fas fa-seedling"></i>Pandas essen Pandabrot</p>
+            <ul id="filter-liste">
+                <div class ="h">
+                    <div class="item-container">
+                        <li class="menu-item">Tag</li>
                     </div>
                 </div>
             </ul>
@@ -27,19 +37,27 @@
             <div id="menu"><i class="header_bar fas fa-bars"></i></div>
         </div>
     </div>
-    <div id="container_body">
-        <div id="monat">
-            <div id="monat_title" class="title"><span>Aktueller Monat</span></div>
-        </div>
-        <div id="dia">
-            <div id="dia_inner"></div>
-        </div>
-        <div id="kontostand">
-            <i class="konto_bars fas fa-bars"></i><div id="konto_title" class="title"><span>Aktueller Kontostand</span></div><i class="konto_bars fas fa-bars"></i>
-        </div>
-        <div id="betrag_adder">
-            <div id="plus_font" class="add_button_font"><i class="fas fa-plus"></i></div>
-            <div id="minus_font" class="add_button_font"><i class="fas fa-minus"></i></div>
+    <div class="body-overflow">
+        <div id="container_body">
+            <div id="monat">
+                <div id="monat_title" class="title"><span>Aktueller Monat</span></div>
+            </div>
+            <div id="dia">
+                <div id="dia_inner"></div>
+            </div>
+            <div id="kontostand_outer">
+                <div id="kontostand">
+                    <i class="konto_bars fas fa-bars"></i><div id="konto_title" class="title"><span>Aktueller Kontostand</span></div><i class="konto_bars fas fa-bars"></i>
+                </div>
+                <div class="betrag_liste">
+                    <div class="list_item"><span>Item</span></div>
+                    <div class="list_item"><span>Item 1</span></div>
+                </div>
+             </div>
+            <div id="betrag_adder">
+                <div id="plus_font" class="add_button_font"><i class="fas fa-plus"></i></div>
+                <div id="minus_font" class="add_button_font"><i class="fas fa-minus"></i></div>
+            </div>
         </div>
     </div>
 </body>
