@@ -9,7 +9,7 @@ app.use( bodyParser.json() );
 //Routes
 app.use( "/api/", require( "./api/api" ) );
 
-app.use( express.static( __dirname + "/frontend" ) );
+app.use( express.static( __dirname + "/../frontend/" ) );
 app.use( ( req , res ) => res.status( 404 ).send( "nix gefunden :(" ) );
 
 app.listen( 8080 );
