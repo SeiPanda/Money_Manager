@@ -2,7 +2,7 @@ const router = require( "express" ).Router();
 const fs = require( "fs" );
 const saveFile = "saved_data/categories.json";
 
-/*  Get all categories  */
+/*  Get expanse categories  */
 router.get( "/", async (req, res) => {
     try {
         fs.readFile( saveFile, "utf8", (error, data) => {
@@ -14,6 +14,11 @@ router.get( "/", async (req, res) => {
             else
                 data = JSON.parse( data );
 
+            if( data.expense.length == 0 )
+                data = {};
+            else
+                data = data.expense;
+
             res.status( 200 ).json( data );
         });
     } catch( error ) {
@@ -22,14 +27,13 @@ router.get( "/", async (req, res) => {
     }
 });
 
-/*  Post new category  */
+/*  Post new expanse category  */
 router.post( "/", async (req, res) => {
     try {
 
         if( !req.body 
             || !req.body.icon || req.body.icon == ""
-            || !req.body.name || req.body.name == ""
-            || req.body.subtract == null ) {
+            || !req.body.name || req.body.name == "" ) {
                 res.status( 400 ).end();
                 return;
             }
@@ -42,22 +46,13 @@ router.post( "/", async (req, res) => {
                 data = {};
             else
                 data = JSON.parse( data );
-                
 
-            let cats = null;
-
-            if( req.body.subtract ) {
-                if( !data.subtractions )
-                    data.subtractions = [];
-                cats = data.subtractions;
-            } else {
-                if( !data.additions )
-                    data.additions = [];
-                cats = data.additions;
-            }
+            if( !data.expense )
+                data.expense = [];
+            let cats = data.expense;
 
             if( cats.length != 0 ) {
-                let existing = data.subtractions.find( category => category.name.toLowerCase() === req.body.name.toLowerCase() );
+                let existing = cats.find( cat => cat.name.toLowerCase() === req.body.name.toLowerCase() );
                 if( existing ) {
                     res.status( 400 ).end( "Kategorie existiert bereits!" );
                     return;

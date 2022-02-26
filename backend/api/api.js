@@ -5,6 +5,7 @@ router.use( ( req, res, next ) => {
 	next();
 });
 
-router.use( "/category/", require( "./contents/category.js" ) );
+router.use( "/category/income/", require( "./contents/category/income.js" ) );
+router.use( "/category/expense/", require( "./contents/category/expense.js" ) );
 
 module.exports = router;
