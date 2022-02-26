@@ -22,10 +22,11 @@ function handleClickAbbrechen() {
 }
 
 let categories = null;
-fetch( "/api/category" ).then( async data => {
+fetch( "/api/category/income" ).then( async data => {
     data = await data.json();
+    console.log(data)
     categories = data;
-    categories.additions.forEach( category => {
+    categories.forEach( category => {
         document.querySelector( "#popUpInner" ).innerHTML += '<div class="category">' + category.icon + '<span>' + category.name + '</span></div>';
         //document.querySelector( "#popUpInner" ).innerHTML += `<div class="category">${category.icon}<span>${category.name}</span></div>`;
     });
