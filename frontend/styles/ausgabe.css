@@ -171,19 +171,14 @@ body {
     color: #464646;
 }
 
-.number-container-item:active {
-    background-color: var(--primary-color);
-    color: white;
-}
-
 #motto {
     justify-self: center;
     align-self: center;
     background-image: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-family: bubble_light;
-    font-size: 20px;
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ font-family: bubble_light;
+ font-size: 20px;
 }
 
 /*Popup*/
@@ -227,7 +222,7 @@ body {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     background-color: white;
     justify-items: center;
-    gap: 10px;
+  gap: 10px;
     color: rgba(42, 42, 42, 0.739);
     border-radius: 4px;
     padding: 10px;
@@ -252,12 +247,7 @@ body {
 .category > span {
     display: block;
     text-align: center;
-}
-
-#plus {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
+   
 }
 
 #submitButton{
@@ -267,9 +257,11 @@ body {
     background-color: white;
     box-shadow: 2px 3px 6px #474747;
     color: var(--primary-color);
+
     border:none;
     border-radius: 4px;
     font-size: 21px;
+   
 }
 
 #closingButton{
@@ -279,7 +271,9 @@ body {
     background-color: white;
     box-shadow: 2px 3px 6px #474747;
     color: var(--primary-color);
+ 
     border:none;
     border-radius: 4px;
     font-size: 21px;
+  
 }

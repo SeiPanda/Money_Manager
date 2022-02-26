@@ -32,3 +32,15 @@ document.querySelectorAll(".konto_bars").forEach(bar => {
 function loadKontostand() {
     document.querySelector("#kontostand_outer").classList.toggle("open")
 }
+
+document.querySelector("#plus_font").addEventListener("click", handleClickPlus);
+
+function handleClickPlus() {
+    window.location="/einnahme.html";
+}
+
+document.querySelector("#minus_font").addEventListener("click", handleClickMinus);
+
+function handleClickMinus() {
+    window.location="/ausgabe.html";
+}
