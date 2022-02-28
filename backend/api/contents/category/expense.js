@@ -1,26 +1,17 @@
 const router = require( "express" ).Router();
 const fs = require( "fs" );
-const saveFile = "saved_data/categories.json";
+const categoryFile = "../../../saved_data/categories.json";
 
 /*  Get expanse categories  */
 router.get( "/", async (req, res) => {
     try {
-        fs.readFile( saveFile, "utf8", (error, data) => {
-            if( error )
-                throw error;
 
-            if( data.length == 0 )
-                data = {};
-            else
-                data = JSON.parse( data );
+        let expenseCategories = require( categoryFile ).expense;
+        if( expenseCategories.length == 0 )
+            expenseCategories = [];
 
-            if( data.expense.length == 0 )
-                data = {};
-            else
-                data = data.expense;
+        res.status( 200 ).json( expenseCategories );
 
-            res.status( 200 ).json( data );
-        });
     } catch( error ) {
         console.error( error );
         res.status( 500 ).end();
@@ -38,36 +29,38 @@ router.post( "/", async (req, res) => {
                 return;
             }
 
-        fs.readFile( saveFile, "utf8", (error, data) => {
+        let expenseCategories = require( categoryFile ).expense;
+        if( expenseCategories.length == 0 ) {
+            expenseCategories = [];
+            res.status( 200 ).json( expenseCategories );
+            return;
+        }
+
+        let existing = expenseCategories.find( cat => cat.name.toLowerCase() === req.body.name.toLowerCase() );
+        if( existing ) {
+            res.status( 400 ).end( "Kategorie existiert bereits!" );
+            return;
+        }
+
+        expenseCategories.push( { icon: req.body.icon, name: req.body.name } );
+
+        let absoluteCategoryFile = categoryFile.replaceAll( "../", "" );
+        fs.readFile( absoluteCategoryFile, "utf8", (error, data) => {
             if( error )
-                  throw error;
+                throw error;
 
-            if( data.length == 0 )
-                data = {};
-            else
-                data = JSON.parse( data );
-
-            if( !data.expense )
-                data.expense = [];
-            let cats = data.expense;
-
-            if( cats.length != 0 ) {
-                let existing = cats.find( cat => cat.name.toLowerCase() === req.body.name.toLowerCase() );
-                if( existing ) {
-                    res.status( 400 ).end( "Kategorie existiert bereits!" );
-                    return;
-                }
-            }
-            
-            cats.push( { icon: req.body.icon, name: req.body.name } );
-
+            data = JSON.parse( data );
+            data.expense = expenseCategories;
             data = JSON.stringify( data );
-            fs.writeFile( saveFile, data, "utf8", err => {
+            
+            fs.writeFile( absoluteCategoryFile, data, "utf8", err => {
                 if( err )
                   throw err;
+
                 res.status( 200 ).end();
             });
         });
+        res.status( 200 ).end();
     } catch( error ) {
         console.error( error );
         res.status( 500 ).end();
