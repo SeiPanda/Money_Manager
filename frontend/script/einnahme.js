@@ -29,6 +29,7 @@ function handleClickAbbrechen() {
 
 let categories = null;
 fetch( "/api/category/income" ).then( async data => {
+    console.log(data)
     data = await data.json();
     console.log(data)
     categories = data;
@@ -150,8 +151,12 @@ function handleClickSubmitNew() {
         name: inputTextNewIcon
     }
 
-    fetch( "/api/category/income", { method: "POST", body: data } ).then( return_data => {
+    let headers = new Headers();
+    headers.append( "Content-Type", "application/json; charset=UTF-8" );
+    fetch( "/api/category/income", { method: "POST", headers: headers, body: JSON.stringify( data ) } ).then( async return_data => {
+        let r = await return_data.text();
         console.log(return_data);
+        console.log(r);
     });
 }
 
