@@ -30,11 +30,9 @@ router.post( "/", async (req, res) => {
             }
 
         let incomeCategories = require( categoryFile ).expense;
-        if( incomeCategories.length == 0 ) {
+        if( incomeCategories.length == 0 )
             incomeCategories = [];
-            res.status( 200 ).json( incomeCategories );
-            return;
-        }
+        
 
         let existing = incomeCategories.find( cat => cat.name.toLowerCase() === req.body.name.toLowerCase() );
         if( existing ) {
@@ -57,10 +55,9 @@ router.post( "/", async (req, res) => {
                 if( err )
                   throw err;
 
-                res.status( 200 ).end();
+                res.status( 201 ).end();
             });
         });
-        res.status( 200 ).end();
     } catch( error ) {
         console.error( error );
         res.status( 500 ).end();
