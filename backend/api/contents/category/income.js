@@ -65,7 +65,7 @@ router.post( "/", async (req, res) => {
             fs.writeFile( saveFile, data, "utf8", err => {
                 if( err )
                   throw err;
-                res.status( 200 ).end();
+                res.status( 201 ).end();
             });
         });
     } catch( error ) {
