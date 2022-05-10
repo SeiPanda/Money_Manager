@@ -15,7 +15,7 @@ router.get( "/", async (req, res) => {
                 data = JSON.parse( data );
 
             if( data.income.length == 0 )
-                data = {};
+                data = [];
             else
                 data = data.income;
 
