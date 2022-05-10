@@ -2,7 +2,7 @@ const router = require( "express" ).Router();
 const fs = require( "fs" );
 const saveFile = "saved_data/categories.json";
 
-/*  Get expanse categories  */
+/*  Get expense categories  */
 router.get( "/", async (req, res) => {
     try {
         fs.readFile( saveFile, "utf8", (error, data) => {
@@ -15,7 +15,7 @@ router.get( "/", async (req, res) => {
                 data = JSON.parse( data );
 
             if( data.expense.length == 0 )
-                data = {};
+                data = [];
             else
                 data = data.expense;
 
@@ -27,7 +27,7 @@ router.get( "/", async (req, res) => {
     }
 });
 
-/*  Post new expanse category  */
+/*  Post new expense category  */
 router.post( "/", async (req, res) => {
     try {
 
@@ -65,7 +65,7 @@ router.post( "/", async (req, res) => {
             fs.writeFile( saveFile, data, "utf8", err => {
                 if( err )
                   throw err;
-                res.status( 200 ).end();
+                res.status( 201 ).end();
             });
         });
     } catch( error ) {
