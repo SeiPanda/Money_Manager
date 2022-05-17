@@ -28,13 +28,23 @@ function handleClickAbbrechen() {
 }
 
 let categories = null;
-fetch( "/api/category/income" ).then( async data => {
+
+let path = "";
+if( window.location.pathname.split("/").pop() === "ausgabe.html" ) {
+    path = "expense";
+}
+
+if( window.location.pathname.split("/").pop() === "einnahme.html" ) {
+    path = "income";
+}
+
+fetch( "/api/category/" + path ).then( async data => {
     console.log(data)
     data = await data.json();
     console.log(data)
     categories = data;
     categories.forEach( category => {
-        document.querySelector( "#popUpInner" ).innerHTML += '<div class="category" id="' + category.name + '">' + category.icon + '</div>';
+        document.querySelector( "#popUpInner" ).innerHTML += '<div class="category" id="' + category.name + '">' + category.icon + '<span>' + category.name + '</span></div>';
         //document.querySelector( "#popUpInner" ).innerHTML += `<div class="category">${category.icon}<span>${category.name}</span></div>`;
     });
     document.querySelector("#popUpInner").innerHTML +=  '<div id="plus" class="category"><i class="fas fa-plus"></i></div>';
@@ -153,7 +163,7 @@ function handleClickSubmitNew() {
 
     let headers = new Headers();
     headers.append( "Content-Type", "application/json; charset=UTF-8" );
-    fetch( "/api/category/income", { method: "POST", headers: headers, body: JSON.stringify( data ) } ).then( async return_data => {
+    fetch( "/api/category/" + path, { method: "POST", headers: headers, body: JSON.stringify( data ) } ).then( async return_data => {
         let r = await return_data.text();
         console.log(return_data);
         console.log(r);
